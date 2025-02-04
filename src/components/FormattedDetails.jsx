@@ -18,11 +18,9 @@ function FormattedDetails({ userDetails }) {
 				<button
 					className='flex justify-end cursor-pointer'
 					onClick={() =>
-						handleCopy(`
-    User ID: ${userDetails.userId}
-    Name: ${userDetails.name}
-    Phone: 
-    Email: ${userDetails.email} `)
+						handleCopy(
+							`User ID: ${userDetails.userId}\nName: ${userDetails.name}\nPhone: \nEmail: ${userDetails.email}`,
+						)
 					}
 				>
 					<svg
