@@ -5,9 +5,42 @@ import { useState } from 'react';
 function FormattedDetails({ userDetails }) {
 	const [copied, setCopied] = useState('');
 
-	const handleCopy = (text) => {
-		navigator.clipboard.writeText(text);
-		setCopied(text);
+	const handleCopy = () => {
+		// 		const format = `User ID: ${userDetails.userId}\nName: ${userDetails.name}\nPhone:  \nEmail: ${userDetails.email}\nAvailability for future troubleshooting/Timeframe to be contacted on:\nPC name/Hostname:\n
+
+		// \nHas the user had access to the application before? Y/N\n
+
+		// \nWhen did the issue start?\n
+
+		// \nInitial troubleshooting steps performed:\n
+
+		// \nScreenshot attached? Y/N\n
+
+		// \nDescription of the issue:\n
+
+		// \nTroubleshooting steps performed:\n`;
+		const format = `User ID: ${userDetails.userId}
+Name: ${userDetails.name}
+Phone: 
+Email: ${userDetails.email}
+
+Availability for future troubleshooting/Timeframe to be contacted on:
+PC name/Hostname:
+
+Has the user had access to the application before? Y/N
+
+When did the issue start?
+
+Initial troubleshooting steps performed:
+
+Screenshot attached? Y/N
+
+Description of the issue:
+
+Troubleshooting steps performed:`;
+
+		navigator.clipboard.writeText(format);
+		setCopied(format);
 	};
 	return (
 		<div className='mt-5 p-4 bg-gray-100 rounded-lg shadow-md w-96 text-center'>
@@ -17,11 +50,7 @@ function FormattedDetails({ userDetails }) {
 			<section className='flex flex-col bg-gray-400 rounded-lg p-4 text-white text-start '>
 				<button
 					className='flex justify-end cursor-pointer'
-					onClick={() =>
-						handleCopy(
-							`User ID: ${userDetails.userId}\nName: ${userDetails.name}\nPhone: \nEmail: ${userDetails.email}`,
-						)
-					}
+					onClick={handleCopy}
 				>
 					<svg
 						width='20px'
