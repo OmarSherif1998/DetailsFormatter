@@ -1,44 +1,17 @@
 /** @format */
 
 import { useState } from 'react';
+import formatPicker from '../functions/FormatPicker';
 
-function FormattedDetails({ userDetails }) {
+function FormattedDetails({ userDetails, type }) {
 	const [copied, setCopied] = useState('');
-
 	const handleCopy = () => {
-		// 		const format = `User ID: ${userDetails.userId}\nName: ${userDetails.name}\nPhone:  \nEmail: ${userDetails.email}\nAvailability for future troubleshooting/Timeframe to be contacted on:\nPC name/Hostname:\n
-
-		// \nHas the user had access to the application before? Y/N\n
-
-		// \nWhen did the issue start?\n
-
-		// \nInitial troubleshooting steps performed:\n
-
-		// \nScreenshot attached? Y/N\n
-
-		// \nDescription of the issue:\n
-
-		// \nTroubleshooting steps performed:\n`;
-		const format = `User ID: ${userDetails.userId}
-Name: ${userDetails.name}
-Phone: 
-Email: ${userDetails.email}
-
-Availability for future troubleshooting/Timeframe to be contacted on:
-PC name/Hostname:
-
-Has the user had access to the application before? Y/N
-
-When did the issue start?
-
-Initial troubleshooting steps performed:
-
-Screenshot attached? Y/N
-
-Description of the issue:
-
-Troubleshooting steps performed:`;
-
+		const format = formatPicker(
+			type,
+			userDetails.userId,
+			userDetails.name,
+			userDetails.email,
+		);
 		navigator.clipboard.writeText(format);
 		setCopied(format);
 	};

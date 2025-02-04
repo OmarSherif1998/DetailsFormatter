@@ -7,14 +7,16 @@ import FormattedDetails from './FormattedDetails';
 function Form() {
 	const [username, setUsername] = useState('');
 	const [userDetails, setUserDetails] = useState(null);
+	const [type, setType] = useState('generic');
 
-	const handleForm = () => {
+	const handleForm = (type) => {
+		setType(type);
 		setUserDetails(formatDetails(username));
 	};
 
 	return (
-		<div className='flex flex-col items-center justify-center min-h-screen '>
-			<div className='flex flex-col items-center gap-5 bg-white p-6 rounded-2xl shadow-lg w-96'>
+		<div className='flex flex-col items-center justify-center min-h-screen w-full '>
+			<div className='flex flex-col items-center gap-5 bg-white p-6 rounded-2xl shadow-lg w-[40%]  '>
 				<h2 className='text-2xl font-semibold text-gray-700 mb-4'>
 					Enter The Username
 				</h2>
@@ -25,16 +27,25 @@ function Form() {
 					onChange={(e) => setUsername(e.target.value)}
 					className='w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none'
 				/>
-
-				<button
-					className='w-fit px-5 bg-blue-600 rounded-lg text-white py-2 cursor-pointer hover:bg-blue-500'
-					onClick={handleForm}
-				>
-					Generate User Details
-				</button>
+				<section className='flex justify-between gap-5'>
+					<button
+						className='w-fit px-7  text-sm bg-blue-600 rounded-lg text-white py-1 cursor-pointer hover:bg-blue-500'
+						onClick={() => handleForm('basic')}
+					>
+						Generate User Details
+					</button>
+					<button
+						className='w-fit px-5 bg-blue-600 rounded-lg text-white py-1 cursor-pointer hover:bg-blue-500'
+						onClick={() => handleForm('generic')}
+					>
+						Generate Generic Form
+					</button>
+				</section>
 			</div>
 
-			{userDetails && <FormattedDetails userDetails={userDetails} />}
+			{userDetails && (
+				<FormattedDetails userDetails={userDetails} type={type} />
+			)}
 		</div>
 	);
 }
